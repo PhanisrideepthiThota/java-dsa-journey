@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class ClimbingStairs {
 
     public static int climbStairs(int n) {
@@ -19,8 +21,13 @@ public class ClimbingStairs {
 
     public static void main(String[] args) {
 
-        int n = 5;
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Ways = " + climbStairs(n));
+        System.out.print("Enter number of stairs: ");
+        int n = sc.nextInt();
+
+        System.out.println("Number of Ways = " + climbStairs(n));
+
+        sc.close();
     }
 }
