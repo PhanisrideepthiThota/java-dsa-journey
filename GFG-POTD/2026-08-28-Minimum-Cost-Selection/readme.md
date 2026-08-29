@@ -12,56 +12,54 @@ We have 3 choices in each row.
 
 This is a **Dynamic Programming** problem because we need the minimum cost.
 
-`dp[j]` = minimum cost up to the current row when choice `j` is selected.
+`dp[j]` means the minimum cost up to the current row when choice `j` is selected.
 
 For every new row:
 
-* If we select choice `0`, previous row can use `1` or `2`.
-* If we select choice `1`, previous row can use `0` or `2`.
-* If we select choice `2`, previous row can use `0` or `1`.
+* If we select choice `0`, the previous row can use choice `1` or `2`.
+* If we select choice `1`, the previous row can use choice `0` or `2`.
+* If we select choice `2`, the previous row can use choice `0` or `1`.
 
-So we take the minimum of the valid previous choices and add the current cost.
+So, we take the minimum cost from the valid choices of the previous row and add the current cost.
 
 ## Transition
 
-```text
-newDp[0] = mat[i][0] + min(dp[1], dp[2])
-newDp[1] = mat[i][1] + min(dp[0], dp[2])
-newDp[2] = mat[i][2] + min(dp[0], dp[1])
+```java
+newDp[0] = mat[i][0] + Math.min(dp[1], dp[2]);
+newDp[1] = mat[i][1] + Math.min(dp[0], dp[2]);
+newDp[2] = mat[i][2] + Math.min(dp[0], dp[1]);
 ```
 
 After processing a row:
 
-```text
-dp = newDp
+```java
+dp = newDp;
 ```
 
-So the current row becomes the previous row for the next iteration.
+The current row's DP becomes the previous row for the next iteration.
 
 ## Important Point
 
 **Adjacent** means only the immediately previous row.
 
-Example:
+Valid:
 
 ```text
 Choice 0 → Choice 1 → Choice 0
 ```
 
-is valid.
+Invalid:
 
 ```text
 Choice 0 → Choice 0
 ```
 
-is not valid.
-
 ## Final Answer
 
 After processing all rows:
 
-```text
-min(dp[0], dp[1], dp[2])
+```java
+Math.min(dp[0], Math.min(dp[1], dp[2]));
 ```
 
 ## Complexity
